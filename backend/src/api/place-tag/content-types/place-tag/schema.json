@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "places_tag",
+  "info": {
+    "singularName": "place-tag",
+    "pluralName": "places-tag",
+    "displayName": "Виды мест"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    }
+  }
+}
