@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "places_tag",
+  "collectionName": "regions",
   "info": {
-    "singularName": "place-tag",
-    "pluralName": "places-tag",
-    "displayName": "Виды мест",
+    "singularName": "region",
+    "pluralName": "regions",
+    "displayName": "Регион",
     "description": ""
   },
   "options": {
@@ -17,6 +17,13 @@
     },
     "description": {
       "type": "blocks"
+    },
+    "flag": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

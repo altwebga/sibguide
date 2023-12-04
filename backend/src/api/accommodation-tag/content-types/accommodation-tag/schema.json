@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "places_tag",
+  "collectionName": "accommodation_tags",
   "info": {
-    "singularName": "place-tag",
-    "pluralName": "places-tag",
-    "displayName": "Виды мест",
-    "description": ""
+    "singularName": "accommodation-tag",
+    "pluralName": "accommodation-tags",
+    "displayName": "Виды размещения"
   },
   "options": {
     "draftAndPublish": true

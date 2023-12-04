@@ -362,80 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiPlacePlace extends Schema.CollectionType {
-  collectionName: 'places';
-  info: {
-    singularName: 'place';
-    pluralName: 'places';
-    displayName: '\u041C\u0435\u0441\u0442\u0430';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    feature_image: Attribute.Media;
-    image_gallery: Attribute.Media;
-    latitude: Attribute.Float;
-    longitude: Attribute.Float;
-    adress: Attribute.String;
-    vidy_mests: Attribute.Relation<
-      'api::place.place',
-      'oneToMany',
-      'api::place-tag.place-tag'
-    >;
-    SEO: Attribute.Component<'shared.seo'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::place.place',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::place.place',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPlaceTagPlaceTag extends Schema.CollectionType {
-  collectionName: 'places_tag';
-  info: {
-    singularName: 'place-tag';
-    pluralName: 'places-tag';
-    displayName: '\u0412\u0438\u0434\u044B \u043C\u0435\u0441\u0442';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::place-tag.place-tag',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::place-tag.place-tag',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -751,6 +677,197 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAccommodationTagAccommodationTag
+  extends Schema.CollectionType {
+  collectionName: 'accommodation_tags';
+  info: {
+    singularName: 'accommodation-tag';
+    pluralName: 'accommodation-tags';
+    displayName: '\u0412\u0438\u0434\u044B \u0440\u0430\u0437\u043C\u0435\u0449\u0435\u043D\u0438\u044F';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::accommodation-tag.accommodation-tag',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::accommodation-tag.accommodation-tag',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHotelHotel extends Schema.CollectionType {
+  collectionName: 'hotels';
+  info: {
+    singularName: 'hotel';
+    pluralName: 'hotels';
+    displayName: '\u0422\u0443\u0440\u0431\u0430\u0437\u044B \u0438 \u043E\u0442\u0435\u043B\u0438';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    region: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'api::region.region'
+    >;
+    latitude: Attribute.Float;
+    longitude: Attribute.Float;
+    adress: Attribute.String;
+    seasonality_work: Attribute.Component<'seasonality-work.sezonnost-raboty'>;
+    vidy_razmeshheniya: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'api::accommodation-tag.accommodation-tag'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPlacePlace extends Schema.CollectionType {
+  collectionName: 'places';
+  info: {
+    singularName: 'place';
+    pluralName: 'places';
+    displayName: '\u041C\u0435\u0441\u0442\u0430';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    feature_image: Attribute.Media;
+    image_gallery: Attribute.Media;
+    latitude: Attribute.Float;
+    longitude: Attribute.Float;
+    adress: Attribute.String;
+    vidy_mests: Attribute.Relation<
+      'api::place.place',
+      'oneToMany',
+      'api::place-tag.place-tag'
+    >;
+    SEO: Attribute.Component<'shared.seo'>;
+    regions: Attribute.Relation<
+      'api::place.place',
+      'oneToMany',
+      'api::region.region'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::place.place',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::place.place',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPlaceTagPlaceTag extends Schema.CollectionType {
+  collectionName: 'places_tag';
+  info: {
+    singularName: 'place-tag';
+    pluralName: 'places-tag';
+    displayName: '\u0412\u0438\u0434\u044B \u043C\u0435\u0441\u0442';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::place-tag.place-tag',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::place-tag.place-tag',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRegionRegion extends Schema.CollectionType {
+  collectionName: 'regions';
+  info: {
+    singularName: 'region';
+    pluralName: 'regions';
+    displayName: '\u0420\u0435\u0433\u0438\u043E\u043D';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    flag: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::region.region',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::region.region',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -761,14 +878,17 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::place.place': ApiPlacePlace;
-      'api::place-tag.place-tag': ApiPlaceTagPlaceTag;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::accommodation-tag.accommodation-tag': ApiAccommodationTagAccommodationTag;
+      'api::hotel.hotel': ApiHotelHotel;
+      'api::place.place': ApiPlacePlace;
+      'api::place-tag.place-tag': ApiPlaceTagPlaceTag;
+      'api::region.region': ApiRegionRegion;
     }
   }
 }

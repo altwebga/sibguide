@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_seasonality_work_sezonnost_raboty",
+  "info": {
+    "displayName": "Сезонность работы",
+    "icon": "clock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "start_work": {
+      "type": "date"
+    },
+    "end_work": {
+      "type": "date"
+    }
+  }
+}
