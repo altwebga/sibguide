@@ -13,7 +13,7 @@
     "seed": "cd backend && npm run strapi import -f ../seed-data.tar.gz",
     "export": "cd backend && npm run strapi export --no-encrypt -f ../seed-data",
     "repo:upstream": "git fetch upstream && git merge upstream/main"
-  }, 
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
