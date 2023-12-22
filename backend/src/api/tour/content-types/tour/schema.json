@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "places",
+  "collectionName": "tours",
   "info": {
-    "singularName": "place",
-    "pluralName": "places",
-    "displayName": "Place"
+    "singularName": "tour",
+    "pluralName": "tours",
+    "displayName": "Tour"
   },
   "options": {
     "draftAndPublish": true
