@@ -4,8 +4,7 @@
   "info": {
     "singularName": "place",
     "pluralName": "places",
-    "displayName": "Места",
-    "description": ""
+    "displayName": "Place"
   },
   "options": {
     "draftAndPublish": true
@@ -18,45 +17,19 @@
     "description": {
       "type": "blocks"
     },
-    "feature_image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
+    "basic_image": {
       "allowedTypes": [
         "images"
-      ]
-    },
-    "image_gallery": {
+      ],
       "type": "media",
-      "multiple": true,
-      "required": false,
+      "multiple": false
+    },
+    "gallery": {
       "allowedTypes": [
         "images"
-      ]
-    },
-    "latitude": {
-      "type": "float"
-    },
-    "longitude": {
-      "type": "float"
-    },
-    "adress": {
-      "type": "string"
-    },
-    "vidy_mests": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::place-tag.place-tag"
-    },
-    "SEO": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.seo"
-    },
-    "regions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::region.region"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
