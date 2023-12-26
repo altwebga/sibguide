@@ -768,6 +768,126 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEventEvent extends Schema.CollectionType {
+  collectionName: 'events';
+  info: {
+    singularName: 'event';
+    pluralName: 'events';
+    displayName: 'Event';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    feature_image: Attribute.Media;
+    gallery: Attribute.Media;
+    regions: Attribute.Relation<
+      'api::event.event',
+      'oneToMany',
+      'api::region.region'
+    >;
+    categories: Attribute.Relation<
+      'api::event.event',
+      'oneToMany',
+      'api::category.category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHotelHotel extends Schema.CollectionType {
+  collectionName: 'hotels';
+  info: {
+    singularName: 'hotel';
+    pluralName: 'hotels';
+    displayName: 'Hotel';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    feature_image: Attribute.Media;
+    gallery: Attribute.Media;
+    categories: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToMany',
+      'api::category.category'
+    >;
+    region: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'api::region.region'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPlacePlace extends Schema.CollectionType {
   collectionName: 'places';
   info: {
@@ -782,11 +902,6 @@ export interface ApiPlacePlace extends Schema.CollectionType {
     title: Attribute.String;
     description: Attribute.Blocks;
     feature_image: Attribute.Media;
-    regions: Attribute.Relation<
-      'api::place.place',
-      'oneToMany',
-      'api::region.region'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -850,10 +965,16 @@ export interface ApiTourTour extends Schema.CollectionType {
     title: Attribute.String;
     description: Attribute.Blocks;
     feature_image: Attribute.Media;
+    gallery: Attribute.Media;
     regions: Attribute.Relation<
       'api::tour.tour',
       'oneToMany',
       'api::region.region'
+    >;
+    categories: Attribute.Relation<
+      'api::tour.tour',
+      'oneToMany',
+      'api::category.category'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -883,6 +1004,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::category.category': ApiCategoryCategory;
+      'api::event.event': ApiEventEvent;
+      'api::hotel.hotel': ApiHotelHotel;
       'api::place.place': ApiPlacePlace;
       'api::region.region': ApiRegionRegion;
       'api::tour.tour': ApiTourTour;

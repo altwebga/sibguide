@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "tours",
+  "collectionName": "events",
   "info": {
-    "singularName": "tour",
-    "pluralName": "tours",
-    "displayName": "Tour"
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,18 +19,20 @@
       "type": "blocks"
     },
     "feature_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "regions": {
       "type": "relation",

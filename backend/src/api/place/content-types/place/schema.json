@@ -23,11 +23,6 @@
       ],
       "type": "media",
       "multiple": false
-    },
-    "regions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::region.region"
     }
   }
 }
