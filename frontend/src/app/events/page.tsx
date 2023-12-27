@@ -2,7 +2,7 @@ import React from 'react'
 
 function Events() {
   return (
-    <div>Events</div>
+    <main className='container flex-grow m-auto'>Events</main>
   )
 }
 

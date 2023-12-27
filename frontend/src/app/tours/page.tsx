@@ -2,7 +2,7 @@ import React from 'react'
 
 function Tours() {
   return (
-    <div>Tours</div>
+    <main className='container flex-grow m-auto'>Tours</main>
   )
 }
 

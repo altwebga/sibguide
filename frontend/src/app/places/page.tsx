@@ -2,7 +2,7 @@ import React from 'react'
 
 function Places() {
   return (
-    <div>Places</div>
+    <main className='container flex-grow m-auto'>Places</main>
   )
 }
 

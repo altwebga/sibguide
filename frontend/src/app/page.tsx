@@ -1,7 +1,7 @@
 
 export default function Home() {
   return (
-    <main>Hello</main>
+    <main className="flex-grow">Hello</main>
     
   )
 }

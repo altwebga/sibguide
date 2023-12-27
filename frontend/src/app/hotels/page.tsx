@@ -2,7 +2,7 @@ import React from 'react'
 
 function Hotels() {
   return (
-    <div>Hotels</div>
+    <main className='container flex-grow m-auto'>Hotels</main>
   )
 }
 
