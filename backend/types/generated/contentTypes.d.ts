@@ -894,6 +894,7 @@ export interface ApiPlacePlace extends Schema.CollectionType {
     singularName: 'place';
     pluralName: 'places';
     displayName: 'Place';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -902,6 +903,17 @@ export interface ApiPlacePlace extends Schema.CollectionType {
     title: Attribute.String;
     description: Attribute.Blocks;
     feature_image: Attribute.Media;
+    gallery: Attribute.Media;
+    category: Attribute.Relation<
+      'api::place.place',
+      'oneToOne',
+      'api::category.category'
+    >;
+    regions: Attribute.Relation<
+      'api::place.place',
+      'oneToMany',
+      'api::region.region'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -1,42 +1,36 @@
-# Online Booking NextJs Template: Chisfis
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Welcome to **Chisfis**, a responsive Nextjs template theme tailored for Online booking, Listing, Real Estate, and booking systems. Whether you're running an accommodation service, travel experience, cruise, car rental, real estate, or a travel agency, Chisfis has got you covered.
+## Getting Started
 
-![Chisfis Banner](https://i.ibb.co/JqPfydC/b-landing.png) 
+First, run the development server:
 
-## 🌟 Features
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Responsive Design**: Modern and fresh design across all devices.
-- **Booking & Listing**: Dedicated templates for booking and listing.
-- **30+ Pages**: A plethora of pages to suit all your needs.
-- **Tailwindcss v3.x**: Built on the latest version for a sleek design.
-- **Dark & Light Modes**: Switch between themes seamlessly.
-- **Latest Tech Stack**: NextJs 13.4.x (`app` directory), Typescript, and TailwindCss.
-- **React Ecosystem**: HeadlessUI components, React v.18.x, Google Map React, React-datepicker, and more.
-- **Code Quality**: Proptypes checking, React hooks, and Prettier for a consistent codebase.
-- **Interactive Components**: Over 8 listing cards, modal gallery, checkout pages, and more.
-- **Built-in React Packages**: A collection of essential packages for a smooth development experience.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 📦 In The Box
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- Full source code of the theme.
-- All React component files.
-- CSS & SCSS source codes.
-- All plugins & libraries.
-- Comprehensive documentation.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## 🚀 Getting Started
+## Learn More
 
-1. Clone the repository.
-2. Navigate to the `app` directory.
-3. Install dependencies using `npm install` or `yarn install`.
-4. Run the development server using `npm run dev` or `yarn dev`.
-5. Explore the documentation for more details.
+To learn more about Next.js, take a look at the following resources:
 
-## 🙏 Acknowledgements
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-A big shoutout to all the libraries, plugins, and assets that made this project possible.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
----
+## Deploy on Vercel
 
-Crafted with ❤️ by [Hamed Hasan](https://github.com/Hamed-Hasan). Connect with me on [LinkedIn](https://www.linkedin.com/in/hamed-hasan).
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "place",
     "pluralName": "places",
-    "displayName": "Place"
+    "displayName": "Place",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,11 +19,29 @@
       "type": "blocks"
     },
     "feature_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gallery": {
       "allowedTypes": [
         "images"
       ],
       "type": "media",
-      "multiple": false
+      "multiple": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "regions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::region.region"
     }
   }
 }
