@@ -1,5 +1,6 @@
 import React from "react";
 import { Place } from "@/types/places";
+import Image from "next/image";
 
 interface PlaceProp {
   params: Place
@@ -33,10 +34,13 @@ const PlaceDetail: React.FC<PlaceProp> = async ({ params }) => {
   
     <div className="my-6">
       <h2 className="text-2xl font-semibold mb-4">Галерея</h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {gallery.data.map((image) => (
           <div key={image.id} className="max-w-sm">
-            <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${image.attributes.url}`} alt={image.attributes.name} className="w-full h-auto" />
+            <Image src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${image.attributes.url}`} alt={image.attributes.name}
+            width={600}
+            height={400}
+            />
           </div>
         ))}
       </div>
