@@ -4,7 +4,7 @@
   "info": {
     "singularName": "place",
     "pluralName": "places",
-    "displayName": "Place",
+    "displayName": "Places",
     "description": ""
   },
   "options": {
@@ -18,30 +18,36 @@
     "description": {
       "type": "blocks"
     },
-    "feature_image": {
+    "gallery": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "allowedTypes": [
         "images"
       ]
     },
-    "gallery": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": true
-    },
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
     "regions": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::region.region"
+    },
+    "video_url": {
+      "type": "customField",
+      "customField": "plugin::video-field.video"
+    },
+    "address": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "float"
+    },
+    "longitude": {
+      "type": "float"
+    },
+    "place_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::place-category.place-category"
     }
   }
 }

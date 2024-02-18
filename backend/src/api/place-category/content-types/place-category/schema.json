@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "regions",
+  "collectionName": "place_categories",
   "info": {
-    "singularName": "region",
-    "pluralName": "regions",
-    "displayName": "Region"
+    "singularName": "place-category",
+    "pluralName": "place-categories",
+    "displayName": "Place category"
   },
   "options": {
     "draftAndPublish": true
@@ -17,7 +17,7 @@
     "description": {
       "type": "blocks"
     },
-    "flag": {
+    "cat_image": {
       "allowedTypes": [
         "images"
       ],

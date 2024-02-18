@@ -512,6 +512,8 @@ export interface PluginContentReleasesRelease extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     releasedAt: Attribute.DateTime;
+    scheduledAt: Attribute.DateTime;
+    timezone: Attribute.String;
     actions: Attribute.Relation<
       'plugin::content-releases.release',
       'oneToMany',
@@ -781,132 +783,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiCategoryCategory extends Schema.CollectionType {
-  collectionName: 'categories';
-  info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'Category';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiEventEvent extends Schema.CollectionType {
-  collectionName: 'events';
-  info: {
-    singularName: 'event';
-    pluralName: 'events';
-    displayName: 'Event';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    feature_image: Attribute.Media;
-    gallery: Attribute.Media;
-    regions: Attribute.Relation<
-      'api::event.event',
-      'oneToMany',
-      'api::region.region'
-    >;
-    categories: Attribute.Relation<
-      'api::event.event',
-      'oneToMany',
-      'api::category.category'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::event.event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::event.event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHotelHotel extends Schema.CollectionType {
-  collectionName: 'hotels';
-  info: {
-    singularName: 'hotel';
-    pluralName: 'hotels';
-    displayName: 'Hotel';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    feature_image: Attribute.Media;
-    gallery: Attribute.Media;
-    categories: Attribute.Relation<
-      'api::hotel.hotel',
-      'oneToMany',
-      'api::category.category'
-    >;
-    region: Attribute.Relation<
-      'api::hotel.hotel',
-      'oneToOne',
-      'api::region.region'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::hotel.hotel',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::hotel.hotel',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiPlacePlace extends Schema.CollectionType {
   collectionName: 'places';
   info: {
     singularName: 'place';
     pluralName: 'places';
-    displayName: 'Place';
+    displayName: 'Places';
     description: '';
   };
   options: {
@@ -915,17 +797,21 @@ export interface ApiPlacePlace extends Schema.CollectionType {
   attributes: {
     title: Attribute.String;
     description: Attribute.Blocks;
-    feature_image: Attribute.Media;
     gallery: Attribute.Media;
-    category: Attribute.Relation<
-      'api::place.place',
-      'oneToOne',
-      'api::category.category'
-    >;
     regions: Attribute.Relation<
       'api::place.place',
       'oneToMany',
       'api::region.region'
+    >;
+    video_url: Attribute.JSON &
+      Attribute.CustomField<'plugin::video-field.video'>;
+    address: Attribute.String;
+    latitude: Attribute.Float;
+    longitude: Attribute.Float;
+    place_categories: Attribute.Relation<
+      'api::place.place',
+      'oneToMany',
+      'api::place-category.place-category'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -938,6 +824,38 @@ export interface ApiPlacePlace extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::place.place',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPlaceCategoryPlaceCategory extends Schema.CollectionType {
+  collectionName: 'place_categories';
+  info: {
+    singularName: 'place-category';
+    pluralName: 'place-categories';
+    displayName: 'Place category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    cat_image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::place-category.place-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::place-category.place-category',
       'oneToOne',
       'admin::user'
     > &
@@ -958,6 +876,7 @@ export interface ApiRegionRegion extends Schema.CollectionType {
   attributes: {
     title: Attribute.String;
     description: Attribute.Blocks;
+    flag: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -972,41 +891,6 @@ export interface ApiRegionRegion extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTourTour extends Schema.CollectionType {
-  collectionName: 'tours';
-  info: {
-    singularName: 'tour';
-    pluralName: 'tours';
-    displayName: 'Tour';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    feature_image: Attribute.Media;
-    gallery: Attribute.Media;
-    regions: Attribute.Relation<
-      'api::tour.tour',
-      'oneToMany',
-      'api::region.region'
-    >;
-    categories: Attribute.Relation<
-      'api::tour.tour',
-      'oneToMany',
-      'api::category.category'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::tour.tour', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::tour.tour', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1029,12 +913,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::category.category': ApiCategoryCategory;
-      'api::event.event': ApiEventEvent;
-      'api::hotel.hotel': ApiHotelHotel;
       'api::place.place': ApiPlacePlace;
+      'api::place-category.place-category': ApiPlaceCategoryPlaceCategory;
       'api::region.region': ApiRegionRegion;
-      'api::tour.tour': ApiTourTour;
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "sibguide-strapi",
+  "name": "backend",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -10,26 +10,26 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "4.20.0",
-    "@strapi/plugin-i18n": "4.20.0",
-    "@strapi/plugin-users-permissions": "4.20.0",
-    "@strapi/strapi": "4.20.0",
+    "@sklinet/strapi-plugin-video-field": "^1.0.6",
+    "@strapi/plugin-cloud": "4.20.1",
+    "@strapi/plugin-i18n": "4.20.1",
+    "@strapi/plugin-users-permissions": "4.20.1",
+    "@strapi/strapi": "4.20.1",
     "mysql": "2.18.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
-    "strapi-plugin-duplicate-button": "^1.1.14",
-    "strapi-plugin-import-export-entries": "^1.23.0",
+    "strapi-plugin-import-export-entries": "^1.23.1",
     "styled-components": "5.3.3"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "84fbd89a-de55-452b-82e6-bfa7f4083005"
+    "uuid": "b0964054-35c5-4d45-be27-c14318e8325e"
   },
   "engines": {
-    "node": ">=20.0.0",
+    "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"
