@@ -14,11 +14,18 @@
       "type": "blocks"
     },
     "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "square": {
+      "type": "integer"
+    },
+    "max_person": {
+      "type": "integer"
     }
   }
 }

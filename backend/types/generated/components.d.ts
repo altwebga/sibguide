@@ -11,6 +11,8 @@ export interface HotelRooms extends Schema.Component {
     title: Attribute.String;
     description: Attribute.Blocks;
     gallery: Attribute.Media;
+    square: Attribute.Integer;
+    max_person: Attribute.Integer;
   };
 }
 
