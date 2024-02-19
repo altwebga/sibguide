@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "places",
+  "collectionName": "hotels",
   "info": {
-    "singularName": "place",
-    "pluralName": "places",
-    "displayName": "Places",
+    "singularName": "hotel",
+    "pluralName": "hotels",
+    "displayName": "Hotels",
     "description": ""
   },
   "options": {
@@ -26,10 +26,8 @@
         "images"
       ]
     },
-    "regions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::region.region"
+    "video_url": {
+      "type": "string"
     },
     "address": {
       "type": "string"
@@ -40,14 +38,16 @@
     "longitude": {
       "type": "float"
     },
-    "place_categories": {
+    "hotel_category": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::place-category.place-category"
+      "relation": "oneToOne",
+      "target": "api::hotel-category.hotel-category"
     },
-    "video_url": {
-      "type": "string",
-      "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)"
+    "rooms": {
+      "type": "dynamiczone",
+      "components": [
+        "hotel.rooms"
+      ]
     }
   }
 }

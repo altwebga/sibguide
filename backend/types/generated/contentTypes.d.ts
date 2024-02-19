@@ -783,6 +783,80 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiHotelHotel extends Schema.CollectionType {
+  collectionName: 'hotels';
+  info: {
+    singularName: 'hotel';
+    pluralName: 'hotels';
+    displayName: 'Hotels';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    gallery: Attribute.Media;
+    video_url: Attribute.String;
+    address: Attribute.String;
+    latitude: Attribute.Float;
+    longitude: Attribute.Float;
+    hotel_category: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'api::hotel-category.hotel-category'
+    >;
+    rooms: Attribute.DynamicZone<['hotel.rooms']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHotelCategoryHotelCategory extends Schema.CollectionType {
+  collectionName: 'hotel_categories';
+  info: {
+    singularName: 'hotel-category';
+    pluralName: 'hotel-categories';
+    displayName: 'Hotel category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hotel-category.hotel-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hotel-category.hotel-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPlacePlace extends Schema.CollectionType {
   collectionName: 'places';
   info: {
@@ -803,8 +877,6 @@ export interface ApiPlacePlace extends Schema.CollectionType {
       'oneToMany',
       'api::region.region'
     >;
-    video_url: Attribute.JSON &
-      Attribute.CustomField<'plugin::video-field.video'>;
     address: Attribute.String;
     latitude: Attribute.Float;
     longitude: Attribute.Float;
@@ -813,6 +885,7 @@ export interface ApiPlacePlace extends Schema.CollectionType {
       'oneToMany',
       'api::place-category.place-category'
     >;
+    video_url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -913,6 +986,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::hotel.hotel': ApiHotelHotel;
+      'api::hotel-category.hotel-category': ApiHotelCategoryHotelCategory;
       'api::place.place': ApiPlacePlace;
       'api::place-category.place-category': ApiPlaceCategoryPlaceCategory;
       'api::region.region': ApiRegionRegion;
