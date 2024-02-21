@@ -12,7 +12,11 @@ import importExportEntries from "strapi-plugin-import-export-entries/strapi-admi
 import multiSelect from "strapi-plugin-multi-select/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
+import customisations from "../../src/admin/app.tsx";
+
 renderAdmin(document.getElementById("strapi"), {
+  customisations,
+
   plugins: {
     "content-versioning": contentVersioning,
     "strapi-cloud": strapiCloud,

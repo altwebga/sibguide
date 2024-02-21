@@ -807,13 +807,13 @@ export interface ApiHotelHotel extends Schema.CollectionType {
     longitude: Attribute.Float;
     address: Attribute.String;
     phone: Attribute.String;
-    email: Attribute.String;
     hotel_category: Attribute.Relation<
       'api::hotel.hotel',
       'oneToOne',
       'api::hotel-category.hotel-category'
     >;
     Rooms: Attribute.DynamicZone<['hotels.hotel-rooms']>;
+    email: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
