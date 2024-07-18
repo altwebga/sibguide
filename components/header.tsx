@@ -50,9 +50,9 @@ export const Header = () => {
                   "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
                 color="foreground"
-                href={item.name}
+                href={item.href}
               >
-                {item.href}
+                {item.name}
               </NextLink>
             </NavbarItem>
           ))}
