@@ -1,61 +1,53 @@
-# 🚀 Getting started with Strapi
+# Next.js & NextUI Template
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
 
-### `develop`
+[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+## Technologies Used
 
-```
-npm run develop
-# or
-yarn develop
-```
+- [Next.js 14](https://nextjs.org/docs/getting-started)
+- [NextUI v2](https://nextui.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Tailwind Variants](https://tailwind-variants.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [next-themes](https://github.com/pacocoursey/next-themes)
 
-### `start`
+## How to Use
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+### Use the template with create-next-app
 
-```
-npm run start
-# or
-yarn start
-```
+To create a new project based on this template using `create-next-app`, run the following command:
 
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
+```bash
+npx create-next-app -e https://github.com/nextui-org/next-app-template
 ```
 
-## ⚙️ Deployment
+### Install dependencies
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
 
+```bash
+npm install
 ```
-yarn strapi deploy
+
+### Run the development server
+
+```bash
+npm run dev
 ```
 
-## 📚 Learn more
+### Setup pnpm (optional)
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+```bash
+public-hoist-pattern[]=*@nextui-org/*
+```
 
-## ✨ Community
+After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+## License
 
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
