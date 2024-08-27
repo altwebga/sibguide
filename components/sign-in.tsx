@@ -1,6 +1,7 @@
 import { signIn } from "@/auth";
+import { Button } from "./ui/button";
 
-export default function SignInPage() {
+export default function SignIn() {
   return (
     <form
       action={async () => {
@@ -8,7 +9,7 @@ export default function SignInPage() {
         await signIn("yandex");
       }}
     >
-      <button type="submit">Signin with Yandex</button>
+      <Button type="submit">Signin with Yandex</Button>
     </form>
   );
 }
