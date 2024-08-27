@@ -10,17 +10,23 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.2",
+    "@nextui-org/avatar": "^2.0.32",
     "@nextui-org/button": "2.0.37",
+    "@nextui-org/card": "^2.0.33",
+    "@nextui-org/checkbox": "^2.1.4",
     "@nextui-org/code": "2.0.32",
+    "@nextui-org/dropdown": "^2.1.29",
     "@nextui-org/input": "2.2.4",
     "@nextui-org/kbd": "2.0.33",
     "@nextui-org/link": "2.0.34",
     "@nextui-org/listbox": "2.1.25",
+    "@nextui-org/modal": "^2.0.39",
     "@nextui-org/navbar": "2.0.36",
     "@nextui-org/snippet": "2.0.41",
     "@nextui-org/switch": "2.0.33",
     "@nextui-org/system": "2.2.5",
     "@nextui-org/theme": "2.2.9",
+    "@nextui-org/user": "^2.0.33",
     "@prisma/client": "^5.18.0",
     "@react-aria/ssr": "3.9.4",
     "@react-aria/visually-hidden": "3.8.12",
@@ -32,7 +38,8 @@
     "next-themes": "^0.2.1",
     "nodemailer": "^6.9.14",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-icons": "^5.3.0"
   },
   "devDependencies": {
     "@types/node": "20.5.7",
