@@ -11,4 +11,10 @@ export default {
   },
   secret: process.env.AUTH_SECRET || "your-secret-key",
   useSecureCookies: false,
+  callbacks: {
+    authorized: async ({ auth }) => {
+      // Авторизованы ли пользователи
+      return !!auth;
+    },
+  },
 } satisfies NextAuthConfig;
