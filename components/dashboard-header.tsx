@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
-import { signOut } from "@/auth";
+import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import { CircleUser, Menu, Package2, Search } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -12,47 +14,33 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
+import { dashboardMenu } from "@/config/dashboard-menu";
+
 export function DashboardHeader() {
+  const pathname = usePathname();
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link
-          href="#"
+          href="/"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
           <Package2 className="h-6 w-6" />
           <span className="sr-only">СИБГИД</span>
         </Link>
-        <Link
-          href="/dashboard"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Dashboard
-        </Link>
-        <Link
-          href="/dashboard/orders"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Заказы
-        </Link>
-        <Link
-          href="/dashboard/posts"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Посты
-        </Link>
-        <Link
-          href="/dashboard/customers"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Пользователи
-        </Link>
-        <Link
-          href="/dashboard/settings"
-          className="text-foreground transition-colors hover:text-foreground"
-        >
-          Настройки
-        </Link>
+        {dashboardMenu.map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            className={cn(
+              "text-muted-foreground transition-colors hover:text-foreground",
+              pathname === item.href && "text-foreground"
+            )}
+          >
+            {item.label}
+          </Link>
+        ))}
       </nav>
       <Sheet>
         <SheetTrigger asChild>
@@ -127,14 +115,7 @@ export function DashboardHeader() {
             <DropdownMenuItem>Поддержка</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <form
-                action={async (formData) => {
-                  "use server";
-                  await signOut();
-                }}
-              >
-                <button type="submit">Sign out</button>
-              </form>
+              <button onClick={() => void signOut()}>Sign out</button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
