@@ -1,4 +1,5 @@
 import { DashboardHeader } from "@/components/dashboard-header";
+import { TooltipProvider } from "@/components/ui/tooltip";
 export default function DashboardLayout({
   children,
 }: Readonly<{
@@ -6,8 +7,10 @@ export default function DashboardLayout({
 }>) {
   return (
     <>
-      <DashboardHeader />
-      {children}
+      <TooltipProvider>
+        <DashboardHeader />
+        {children}
+      </TooltipProvider>
     </>
   );
 }
