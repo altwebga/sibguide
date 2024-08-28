@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { signOut } from "@/auth";
 import { CircleUser, Menu, Package2, Search } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -20,37 +21,37 @@ export function DashboardHeader() {
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
           <Package2 className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          <span className="sr-only">СИБГИД</span>
         </Link>
         <Link
-          href="#"
+          href="/dashboard"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Dashboard
         </Link>
         <Link
-          href="#"
+          href="/dashboard/orders"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          Orders
+          Заказы
         </Link>
         <Link
-          href="#"
+          href="/dashboard/posts"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          Products
+          Посты
         </Link>
         <Link
-          href="#"
+          href="/dashboard/customers"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          Customers
+          Пользователи
         </Link>
         <Link
-          href="#"
+          href="/dashboard/settings"
           className="text-foreground transition-colors hover:text-foreground"
         >
-          Settings
+          Настройки
         </Link>
       </nav>
       <Sheet>
@@ -118,12 +119,23 @@ export function DashboardHeader() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>Мой аккаунт</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/dashboard/settings">Настройки</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>Поддержка</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem>
+              <form
+                action={async (formData) => {
+                  "use server";
+                  await signOut();
+                }}
+              >
+                <button type="submit">Sign out</button>
+              </form>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
