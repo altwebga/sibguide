@@ -16,7 +16,7 @@ export const dashboardMenu = [
     href: "/dashboard/orders",
   },
   {
-    label: "Посты",
+    label: "Объявления",
     href: "/dashboard/posts",
   },
 ];

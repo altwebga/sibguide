@@ -29,11 +29,11 @@ export default function PostsPage() {
           <Tabs defaultValue="all">
             <div className="flex items-center">
               <TabsList>
-                <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="active">Active</TabsTrigger>
-                <TabsTrigger value="draft">Draft</TabsTrigger>
+                <TabsTrigger value="all">Все</TabsTrigger>
+                <TabsTrigger value="active">Активные</TabsTrigger>
+                <TabsTrigger value="draft">Черновики</TabsTrigger>
                 <TabsTrigger value="archived" className="hidden sm:flex">
-                  Archived
+                  Архивные
                 </TabsTrigger>
               </TabsList>
               <div className="ml-auto flex items-center gap-2">
@@ -42,7 +42,7 @@ export default function PostsPage() {
                     <Button variant="outline" size="sm" className="h-8 gap-1">
                       <ListFilter className="h-3.5 w-3.5" />
                       <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                        Filter
+                        Фильтр
                       </span>
                     </Button>
                   </DropdownMenuTrigger>
@@ -50,24 +50,26 @@ export default function PostsPage() {
                     <DropdownMenuLabel>Filter by</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuCheckboxItem checked>
-                      Active
+                      Активные
                     </DropdownMenuCheckboxItem>
-                    <DropdownMenuCheckboxItem>Draft</DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem>
-                      Archived
+                      Черновики
+                    </DropdownMenuCheckboxItem>
+                    <DropdownMenuCheckboxItem>
+                      В архиве
                     </DropdownMenuCheckboxItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
                 <Button size="sm" variant="outline" className="h-8 gap-1">
                   <File className="h-3.5 w-3.5" />
                   <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Export
+                    Экспорт
                   </span>
                 </Button>
                 <Button size="sm" className="h-8 gap-1">
                   <PlusCircle className="h-3.5 w-3.5" />
                   <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Add Product
+                    Добавить объявление
                   </span>
                 </Button>
               </div>
@@ -75,18 +77,16 @@ export default function PostsPage() {
             <TabsContent value="all">
               <Card x-chunk="dashboard-06-chunk-0">
                 <CardHeader>
-                  <CardTitle>Products</CardTitle>
-                  <CardDescription>
-                    Manage your products and view their sales performance.
-                  </CardDescription>
+                  <CardTitle>Объявления</CardTitle>
+                  <CardDescription>Список объявлений</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <PostsTable />
                 </CardContent>
                 <CardFooter>
                   <div className="text-xs text-muted-foreground">
-                    Showing <strong>1-10</strong> of <strong>32</strong>{" "}
-                    products
+                    Показано <strong>1-10</strong> of <strong>32</strong>{" "}
+                    объявлений
                   </div>
                 </CardFooter>
               </Card>
