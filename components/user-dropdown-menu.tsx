@@ -1,3 +1,4 @@
+import { signOut } from "@/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,7 +25,16 @@ export function UserDropdownMenu() {
         <DropdownMenuItem>Settings</DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem>
+          <form
+            action={async (formData) => {
+              "use server";
+              await signOut();
+            }}
+          >
+            <button type="submit">Sign out</button>
+          </form>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

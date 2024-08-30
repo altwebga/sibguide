@@ -9,7 +9,7 @@ import { UserDropdownMenu } from "./user-dropdown-menu";
 export default function DashboardPanel() {
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-      <DashboardNavigation />
+      <DashboardNavigation className="hidden" />
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -18,7 +18,7 @@ export default function DashboardPanel() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left">
-          <DashboardNavigation />
+          <DashboardNavigation className="flex flex-col gap-4" />
         </SheetContent>
       </Sheet>
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">

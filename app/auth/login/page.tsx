@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn, auth, providerMap } from "@/auth";
+import { signIn, providerMap } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -27,12 +27,23 @@ export default function LoginPage() {
           action={async (formData) => {
             "use server";
             try {
-              await signIn("credentials", formData);
+              const email = formData.get("email");
+              const password = formData.get("password");
+
+              const result = await signIn("credentials", {
+                redirect: false,
+                email,
+                password,
+              });
+
+              if (!result?.ok) {
+                throw new AuthError(result.error);
+              }
+
+              return redirect("/dashboard"); // Переадресация на успешную страницу
             } catch (error) {
               if (error instanceof AuthError) {
-                return redirect(
-                  `${window.location.pathname}?error=${error.type}`
-                );
+                return redirect(`/auth/error?error=${error.type}`);
               }
               throw error;
             }
@@ -42,6 +53,7 @@ export default function LoginPage() {
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
+              name="email"
               type="email"
               placeholder="m@example.com"
               required
@@ -49,7 +61,7 @@ export default function LoginPage() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" required />
+            <Input id="password" name="password" type="password" required />
           </div>
           <Button type="submit" className="w-full">
             Войти
@@ -65,19 +77,10 @@ export default function LoginPage() {
               try {
                 await signIn(provider.id);
               } catch (error) {
-                // Signin can fail for a number of reasons, such as the user
-                // not existing, or the user not having the correct role.
-                // In some cases, you may want to redirect to a custom error
                 if (error instanceof AuthError) {
-                  return redirect(
-                    `${window.location.pathname}?error=${error.type}`
-                  );
+                  return redirect(`/auth/error?error=${error.type}`);
                 }
 
-                // Otherwise if a redirects happens Next.js can handle it
-                // so you can just re-thrown the error and let Next.js handle it.
-                // Docs:
-                // https://nextjs.org/docs/app/api-reference/functions/redirect#server-component
                 throw error;
               }
             }}
