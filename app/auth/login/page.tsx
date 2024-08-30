@@ -1,0 +1,93 @@
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { signIn, auth, providerMap } from "@/auth";
+import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
+
+export default function LoginPage() {
+  return (
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardDescription>
+          Enter your email below to login to your account.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-4">
+        <form
+          action={async (formData) => {
+            "use server";
+            try {
+              await signIn("credentials", formData);
+            } catch (error) {
+              if (error instanceof AuthError) {
+                return redirect(
+                  `${window.location.pathname}?error=${error.type}`
+                );
+              }
+              throw error;
+            }
+          }}
+        >
+          <div className="grid gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="password">Password</Label>
+            <Input id="password" type="password" required />
+          </div>
+          <Button type="submit" className="w-full">
+            Войти
+          </Button>
+        </form>
+      </CardContent>
+      <CardFooter>
+        {Object.values(providerMap).map((provider) => (
+          <form
+            key={provider.id}
+            action={async () => {
+              "use server";
+              try {
+                await signIn(provider.id);
+              } catch (error) {
+                // Signin can fail for a number of reasons, such as the user
+                // not existing, or the user not having the correct role.
+                // In some cases, you may want to redirect to a custom error
+                if (error instanceof AuthError) {
+                  return redirect(
+                    `${window.location.pathname}?error=${error.type}`
+                  );
+                }
+
+                // Otherwise if a redirects happens Next.js can handle it
+                // so you can just re-thrown the error and let Next.js handle it.
+                // Docs:
+                // https://nextjs.org/docs/app/api-reference/functions/redirect#server-component
+                throw error;
+              }
+            }}
+          >
+            <Button type="submit">
+              <span>Sign in with {provider.name}</span>
+            </Button>
+          </form>
+        ))}
+      </CardFooter>
+    </Card>
+  );
+}
