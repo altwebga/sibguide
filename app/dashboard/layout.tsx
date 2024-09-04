@@ -1,5 +1,4 @@
 import DashboardPanel from "@/components/dashboard-panel";
-import { ToastProvider } from "@radix-ui/react-toast";
 
 export default function DashboardLayout({
   children,
@@ -9,7 +8,7 @@ export default function DashboardLayout({
   return (
     <>
       <DashboardPanel />
-      <ToastProvider>{children}</ToastProvider>
+      {children}
     </>
   );
 }
