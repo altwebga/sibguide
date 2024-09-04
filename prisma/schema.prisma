@@ -13,6 +13,7 @@ model User {
   email         String?         @unique
   emailVerified DateTime?
   image         String?
+  role          String? @default("customer")
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
@@ -73,6 +74,11 @@ model Post {
   title           String
   description     String
   images          String?
+  price           String?
+  latitude        String?
+  longitude       String?
+  adress          String?
+  region          String?
   userId          String
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
