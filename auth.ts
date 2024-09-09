@@ -1,12 +1,28 @@
 import NextAuth from "next-auth";
-import authConfig from "./auth.config";
-
-import { PrismaClient } from "@prisma/client";
+import Yandex from "next-auth/providers/yandex";
+//import Resend from "next-auth/providers/resend";
+import Nodemailer from "next-auth/providers/nodemailer";
+import type { Provider } from "next-auth/providers";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { prisma } from "@/lib/prisma";
 
-const prisma = new PrismaClient();
+const providers: Provider[] = [
+  Yandex,
+  Nodemailer({
+    server: {
+      host: process.env.SMTP_HOST,
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
+      },
+    },
+    from: process.env.SMTP_USER,
+  }),
+];
 
-export const providerMap = authConfig.providers
+export const providerMap = providers
   .map((provider) => {
     if (typeof provider === "function") {
       const providerData = provider();
@@ -15,11 +31,11 @@ export const providerMap = authConfig.providers
       return { id: provider.id, name: provider.name };
     }
   })
-  .filter((provider) => provider.id !== "credentials");
+  .filter((provider) => provider.id !== "nodemailer");
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  ...authConfig,
+  providers,
   pages: {
     signIn: "/auth/login",
   },
