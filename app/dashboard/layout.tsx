@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { DashboardHeader } from "@/components/dashboard-header";
 import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
@@ -8,5 +9,10 @@ export default async function DashboardLayout({
   if (!session) {
     redirect("/auth/login");
   }
-  return <>{children}</>;
+  return (
+    <>
+      <DashboardHeader />
+      {children}
+    </>
+  );
 }

@@ -1,9 +1,7 @@
-import { SignOut } from "@/components/signout-button";
-
 export default function DashboardPage() {
   return (
     <div>
-      <SignOut />
+      <h1>Дашборд</h1>
     </div>
   );
 }
