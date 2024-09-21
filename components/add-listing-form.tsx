@@ -1,19 +1,21 @@
-"use client";
+"use client"; // Директива для работы в клиентском компоненте
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -21,16 +23,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "./ui/textarea";
-import { listing } from "@/config/listing-type";
 import { useRouter } from "next/navigation";
+import { addPostAction } from "@/actions/add-post"; // Импорт экшена для создания поста
+import { listing } from "@/config/listing-type";
 
-type AddListingFormProps = {
-  userEmail: string;
-  onSubmit: (data: z.infer<typeof FormSchema>) => Promise<void>;
-};
-
+// Схема валидации для формы
 const FormSchema = z.object({
   postType: z.string(),
   title: z.string().min(2, {
@@ -39,11 +36,17 @@ const FormSchema = z.object({
   description: z.string().min(2, {
     message: "Описание должно содержать хотя бы 2 символа.",
   }),
-  image: z.string().optional(),
-  userEmail: z.string(),
+  file: z.any().refine((files) => files?.length > 0, {
+    message: "Необходимо выбрать файл",
+  }),
+  userEmail: z.string().email(),
 });
 
-export function AddListingForm({ userEmail, onSubmit }: AddListingFormProps) {
+type AddListingFormProps = {
+  userEmail: string;
+};
+
+export function AddListingForm({ userEmail }: AddListingFormProps) {
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -52,25 +55,56 @@ export function AddListingForm({ userEmail, onSubmit }: AddListingFormProps) {
       postType: listing[0].value,
       title: "",
       description: "",
-      image: "",
+      file: null,
     },
   });
 
-  // Обрабатываем отправку формы
-  async function handleFormSubmit(data: z.infer<typeof FormSchema>) {
+  // Обработка отправки формы
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    const selectedFile = data.file[0];
+
     try {
-      await onSubmit(data); // Вызываем серверный экшен через проп
-      toast({
-        title: "Пост успешно сохранен!",
+      // Шаг 1: Загружаем изображение на сервер, если файл выбран
+      let imageUrl = null;
+      if (selectedFile) {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+
+        const imageResponse = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        const imageResult = await imageResponse.json();
+
+        if (!imageResponse.ok) {
+          throw new Error(imageResult.error);
+        }
+
+        imageUrl = imageResult.url;
+      }
+
+      // Шаг 2: Создаём пост через серверный экшен addPostAction
+      await addPostAction({
+        postType: data.postType,
+        title: data.title,
+        description: data.description,
+        image: imageUrl, // Передаем URL изображения, если оно есть
+        userEmail: data.userEmail,
       });
-      form.reset();
-      router.push("/dashboard");
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.error(error);
+
       toast({
-        title: "Ошибка при сохранении",
-        description: `Не удалось сохранить ${data.title}. Попробуйте еще раз.`,
+        title: "Пост успешно создан!",
+        description: "Ваш пост был успешно сохранен.",
+      });
+
+      form.reset(); // Сброс формы после успешного создания поста
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Ошибка при создании поста или загрузке файла:", error);
+      toast({
+        title: "Ошибка",
+        description: "Произошла ошибка при сохранении поста. Попробуйте снова.",
         variant: "destructive",
       });
     }
@@ -78,10 +112,8 @@ export function AddListingForm({ userEmail, onSubmit }: AddListingFormProps) {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(handleFormSubmit)}
-        className="w-2/3 space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+        {/* Поле для выбора типа поста */}
         <FormField
           control={form.control}
           name="postType"
@@ -107,6 +139,8 @@ export function AddListingForm({ userEmail, onSubmit }: AddListingFormProps) {
             </FormItem>
           )}
         />
+
+        {/* Поле для заголовка */}
         <FormField
           control={form.control}
           name="title"
@@ -121,6 +155,8 @@ export function AddListingForm({ userEmail, onSubmit }: AddListingFormProps) {
             </FormItem>
           )}
         />
+
+        {/* Поле для описания */}
         <FormField
           control={form.control}
           name="description"
@@ -135,21 +171,26 @@ export function AddListingForm({ userEmail, onSubmit }: AddListingFormProps) {
             </FormItem>
           )}
         />
+
+        {/* Поле для загрузки файла */}
         <FormField
           control={form.control}
-          name="image"
+          name="file"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Изображение</FormLabel>
+              <FormLabel>Выберите файл</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  type="file"
+                  onChange={(e) => field.onChange(e.target.files)}
+                />
               </FormControl>
-              <FormDescription>Ссылка на изображение</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Сохранить</Button>
+
+        <Button type="submit">Сохранить пост</Button>
       </form>
     </Form>
   );
