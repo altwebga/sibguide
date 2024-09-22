@@ -12,7 +12,7 @@ export default async function DashboardLayout({
   return (
     <>
       <DashboardNav />
-      {children}
+      <main className="px-[15px]">{children}</main>
     </>
   );
 }
