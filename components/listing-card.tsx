@@ -1,3 +1,4 @@
+import { getListings } from "@/actions/get-listing"; // Импорт экшена
 import Image from "next/image";
 import Link from "next/link";
 import { File, ListFilter, MoreHorizontal, PlusCircle } from "lucide-react";
@@ -32,7 +33,9 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import placeholderImage from "@/public/image/placeholder.svg";
 
-export function ListingCard() {
+export async function ListingCard() {
+  const listings = await getListings(); // Получение постов с сервера
+
   return (
     <div className="grid flex-1 items-start gap-4 md:gap-8">
       <Tabs defaultValue="all">
@@ -89,7 +92,7 @@ export function ListingCard() {
             <CardHeader>
               <CardTitle>Объявления</CardTitle>
               <CardDescription>
-                Manage your products and view their sales performance.
+                Управляйте своими продуктами и просматривайте их статистику.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -100,71 +103,76 @@ export function ListingCard() {
                       <span className="sr-only">Image</span>
                     </TableHead>
                     <TableHead>Название</TableHead>
-                    <TableHead>Status</TableHead>
+                    <TableHead>Вид объявления</TableHead>
                     <TableHead className="hidden md:table-cell">
-                      Price
+                      Ссылка
                     </TableHead>
                     <TableHead className="hidden md:table-cell">
-                      Total Sales
+                      Email автора
                     </TableHead>
                     <TableHead className="hidden md:table-cell">
-                      Created at
+                      Создано
                     </TableHead>
                     <TableHead>
-                      <span className="sr-only">Actions</span>
+                      <span className="sr-only">Действия</span>
                     </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow>
-                    <TableCell className="hidden sm:table-cell">
-                      <Image
-                        alt="Product image"
-                        className="aspect-square rounded-md object-cover"
-                        height="64"
-                        src={placeholderImage}
-                        width="64"
-                      />
-                    </TableCell>
-                    <TableCell className="font-medium">
-                      Laser Lemonade Machine
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant="outline">Draft</Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      $499.99
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">25</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      2023-07-12 10:42 AM
-                    </TableCell>
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button
-                            aria-haspopup="true"
-                            size="icon"
-                            variant="ghost"
-                          >
-                            <MoreHorizontal className="h-4 w-4" />
-                            <span className="sr-only">Toggle menu</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuItem>Edit</DropdownMenuItem>
-                          <DropdownMenuItem>Delete</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
+                  {listings.map((listing) => (
+                    <TableRow key={listing.id}>
+                      <TableCell className="hidden sm:table-cell">
+                        <Image
+                          alt={listing.title}
+                          className="aspect-square rounded-md object-cover"
+                          height="64"
+                          src={listing.images[0]?.url || placeholderImage}
+                          width="64"
+                        />
+                      </TableCell>
+                      <TableCell className="font-medium">
+                        {listing.title}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline">{listing.postType}</Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {listing.slug}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {listing.userEmail}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {new Date(listing.createdAt).toLocaleDateString()}
+                      </TableCell>
+                      <TableCell>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              aria-haspopup="true"
+                              size="icon"
+                              variant="ghost"
+                            >
+                              <MoreHorizontal className="h-4 w-4" />
+                              <span className="sr-only">Toggle menu</span>
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Действия</DropdownMenuLabel>
+                            <DropdownMenuItem>Редактировать</DropdownMenuItem>
+                            <DropdownMenuItem>Удалить</DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </CardContent>
             <CardFooter>
               <div className="text-xs text-muted-foreground">
-                Showing <strong>1-10</strong> of <strong>32</strong> products
+                Показано <strong>1-10</strong> из{" "}
+                <strong>{listings.length}</strong> продуктов
               </div>
             </CardFooter>
           </Card>

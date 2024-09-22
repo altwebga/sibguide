@@ -7,32 +7,22 @@ type DashboardNavLinkType = {
 export const dashboardNavLinks: DashboardNavLinkType[] = [
   {
     id: 1,
-    href: "/dashboard/post",
-    label: "Статьи",
+    href: "/dashboard",
+    label: "Объявления",
   },
   {
     id: 2,
-    href: "/dashboard/place",
-    label: "Места",
+    href: "/dashboard/payment",
+    label: "Платежи",
   },
   {
     id: 3,
-    href: "/dashboard/tour",
-    label: "Туры",
+    href: "/dashboard/account",
+    label: "Аккаунт",
   },
   {
     id: 4,
-    href: "/dashboard/event",
-    label: "Мероприятия",
-  },
-  {
-    id: 5,
-    href: "/dashboard/excursion",
-    label: "Экскурсии",
-  },
-  {
-    id: 6,
-    href: "/dashboard/hotel",
-    label: "Отели",
+    href: "/dashboard/settings",
+    label: "Настройки",
   },
 ];
