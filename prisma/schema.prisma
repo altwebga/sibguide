@@ -13,7 +13,7 @@ model User {
   email         String?         @unique
   emailVerified DateTime?
   image         String?
-  role          String? @default("client")
+  role          String? @default("user")
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
