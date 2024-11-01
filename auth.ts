@@ -16,10 +16,14 @@ declare module "next-auth" {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
+<<<<<<< HEAD
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
   },
+=======
+
+>>>>>>> 05e9449 (Принудительное обновление файлов с изменением регистра)
   callbacks: {
     async session({ token, session }) {
       if (session.user) {
@@ -57,5 +61,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
   },
+<<<<<<< HEAD
+=======
+  session: { strategy: "jwt" },
+  pages: {
+    signIn: "/login",
+    verifyRequest: "/auth/verify",
+    error: "/auth/error",
+  },
+>>>>>>> 05e9449 (Принудительное обновление файлов с изменением регистра)
   ...authConfig,
 });

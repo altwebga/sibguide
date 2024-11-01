@@ -37,5 +37,11 @@ yarn-error.log*
 next-env.d.ts
 
 #prisma
+<<<<<<< HEAD
 /prisma/migrations/*
 *.db*
+=======
+*/migrations
+*.db
+*.db-journal
+>>>>>>> 05e9449 (Принудительное обновление файлов с изменением регистра)

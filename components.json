@@ -6,7 +6,11 @@
   "tailwind": {
     "config": "tailwind.config.ts",
     "css": "app/globals.css",
+<<<<<<< HEAD
     "baseColor": "stone",
+=======
+    "baseColor": "zinc",
+>>>>>>> 05e9449 (Принудительное обновление файлов с изменением регистра)
     "cssVariables": true,
     "prefix": ""
   },

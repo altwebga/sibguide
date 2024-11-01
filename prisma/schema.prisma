@@ -1,6 +1,12 @@
 datasource db {
+<<<<<<< HEAD
   provider = "sqlite"
   url      = env("DATABASE_URL")
+=======
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+>>>>>>> 05e9449 (Принудительное обновление файлов с изменением регистра)
 }
 
 generator client {
