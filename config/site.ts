@@ -1,14 +1,14 @@
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
   Command,
   Frame,
   GalleryVerticalEnd,
   Map,
   PieChart,
-  Settings2,
-  SquareTerminal,
+  MapPin,
+  Hotel,
+  TentTree,
+  Route,
 } from "lucide-react";
 
 export const dashboardConfig = {
@@ -33,7 +33,7 @@ export const dashboardConfig = {
     {
       title: "Места",
       url: "#",
-      icon: SquareTerminal,
+      icon: MapPin,
       isActive: true,
       items: [
         {
@@ -53,7 +53,7 @@ export const dashboardConfig = {
     {
       title: "Отели",
       url: "#",
-      icon: Bot,
+      icon: Hotel,
       items: [
         {
           title: "Все отели",
@@ -76,7 +76,7 @@ export const dashboardConfig = {
     {
       title: "Туры",
       url: "#",
-      icon: BookOpen,
+      icon: TentTree,
       items: [
         {
           title: "Все туры",
@@ -99,7 +99,7 @@ export const dashboardConfig = {
     {
       title: "Экскурсии",
       url: "#",
-      icon: Settings2,
+      icon: Route,
       items: [
         {
           title: "Все экскурсии",
@@ -122,17 +122,17 @@ export const dashboardConfig = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Блог",
       url: "#",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
+      name: "Цены",
       url: "#",
       icon: PieChart,
     },
     {
-      name: "Travel",
+      name: "Поддержка",
       url: "#",
       icon: Map,
     },
