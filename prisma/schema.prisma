@@ -1,11 +1,16 @@
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
+}
+
+enum UserRole {
+ADMIN
+USER
+CLIENT
 }
 
 model User {
@@ -14,7 +19,7 @@ model User {
   email         String?         @unique
   emailVerified DateTime?
   image         String?
-  role          String? @default("user")
+  role          UserRole @default(USER)
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
@@ -68,13 +73,22 @@ model VerificationToken {
   @@map("verificationtokens")
 }
 
+enum PostType {
+  ARTICLE
+  TOUR
+  EXCURSION
+  HOTEL
+  EVENT
+  PLACE
+}
+
 model Post {
   id          String   @id @default(cuid())
   slug        String   @unique
-  postType    String
+  postType    PostType @default(ARTICLE)
   title       String
   description String
-  images      PostImage[] // Связь через промежуточную таблицу PostImage
+  images      PostImage[]
   userEmail   String
   user        User       @relation(fields: [userEmail], references: [email], onDelete: Cascade)
 
@@ -106,6 +120,6 @@ model PostImage {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@id([postId, imageId]) // Композитный первичный ключ для уникальности связей
+  @@id([postId, imageId])
   @@map("post_images")
 }

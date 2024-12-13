@@ -1,3 +1,6 @@
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -14,13 +17,11 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 export default async function DashboardLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const session = await auth();
 
   if (!session) {
@@ -49,7 +50,7 @@ export default async function DashboardLayout({
             </Breadcrumb>
           </div>
         </header>
-        <main className="px-4">{children}</main>
+        {children}
       </SidebarInset>
     </SidebarProvider>
   );
