@@ -1,6 +1,6 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
-
+import Link from "next/link";
 import {
   BadgeCheck,
   Bell,
@@ -101,7 +101,7 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <BadgeCheck />
-                Account
+                <Link href="/dashboard/account">Аккаунт</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard />

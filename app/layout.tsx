@@ -25,11 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ru" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider
+          session={null}
+          refetchInterval={300}
+          refetchOnWindowFocus={false}
+        >
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
