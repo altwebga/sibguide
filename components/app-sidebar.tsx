@@ -32,86 +32,97 @@ const data = {
 
   navMain: [
     {
-      title: "Playground",
+      title: "Места",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Все места",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Добавить место",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Категории",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Отели",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "Все турбазы и отели",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Добавить",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Категории",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Туры",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Все туры",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Добавить тур",
           url: "#",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
+          title: "Категории",
           url: "#",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "Экскурсии",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "General",
+          title: "Все экскурсии",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Добавить экскурсию",
           url: "#",
         },
         {
-          title: "Billing",
+          title: "Категории",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "События",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "Все события",
           url: "#",
         },
         {
-          title: "Limits",
+          title: "Добавить событие",
+          url: "#",
+        },
+        {
+          title: "Категории",
           url: "#",
         },
       ],
