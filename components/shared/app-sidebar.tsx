@@ -2,18 +2,22 @@
 
 import * as React from "react";
 import {
+  AudioWaveform,
   BookOpen,
   Bot,
+  Command,
   Frame,
+  GalleryVerticalEnd,
   Map,
   PieChart,
   Settings2,
   SquareTerminal,
 } from "lucide-react";
 
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/nav-user";
+import { NavMain } from "@/components/shared/nav-main";
+import { NavProjects } from "@/components/shared/nav-projects";
+import { NavUser } from "@/components/shared/nav-user";
+import { TeamSwitcher } from "@/components/shared/team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -25,104 +29,109 @@ import {
 // This is sample data.
 const data = {
   user: {
-    name: "нет имени",
-    email: "нет почты",
-    avatar: "/images/profile.png",
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
   },
-
+  teams: [
+    {
+      name: "Acme Inc",
+      logo: GalleryVerticalEnd,
+      plan: "Enterprise",
+    },
+    {
+      name: "Acme Corp.",
+      logo: AudioWaveform,
+      plan: "Startup",
+    },
+    {
+      name: "Evil Corp.",
+      logo: Command,
+      plan: "Free",
+    },
+  ],
   navMain: [
     {
-      title: "Места",
+      title: "Playground",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "Все места",
+          title: "History",
           url: "#",
         },
         {
-          title: "Добавить место",
+          title: "Starred",
           url: "#",
         },
         {
-          title: "Категории",
+          title: "Settings",
           url: "#",
         },
       ],
     },
     {
-      title: "Отели",
+      title: "Models",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Все турбазы и отели",
+          title: "Genesis",
           url: "#",
         },
         {
-          title: "Добавить",
+          title: "Explorer",
           url: "#",
         },
         {
-          title: "Категории",
+          title: "Quantum",
           url: "#",
         },
       ],
     },
     {
-      title: "Туры",
+      title: "Documentation",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Все туры",
+          title: "Introduction",
           url: "#",
         },
         {
-          title: "Добавить тур",
+          title: "Get Started",
           url: "#",
         },
         {
-          title: "Категории",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Экскурсии",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "Все экскурсии",
+          title: "Tutorials",
           url: "#",
         },
         {
-          title: "Добавить экскурсию",
-          url: "#",
-        },
-        {
-          title: "Категории",
+          title: "Changelog",
           url: "#",
         },
       ],
     },
     {
-      title: "События",
+      title: "Settings",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "Все события",
+          title: "General",
           url: "#",
         },
         {
-          title: "Добавить событие",
+          title: "Team",
           url: "#",
         },
         {
-          title: "Категории",
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
           url: "#",
         },
       ],
@@ -148,18 +157,17 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const copyright = new Date().getFullYear();
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <NavUser user={data.user} />
+        <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <p>СИБГИД 2014 - {copyright}</p>
+        <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

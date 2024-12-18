@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 
 const geistSans = localFont({
-  src: "../public/fonts/GeistVF.woff",
+  src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "../public/fonts/GeistMonoVF.woff",
+  src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -25,17 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider
-          session={null}
-          refetchInterval={300}
-          refetchOnWindowFocus={false}
-        >
-          {children}
-        </SessionProvider>
+        {children}
       </body>
     </html>
   );
