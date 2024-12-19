@@ -33,86 +33,82 @@ const data = {
 
   navMain: [
     {
-      title: "Playground",
+      title: "Объявления",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Все объявления",
+          url: "/admin/listings",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Добавить объявление",
+          url: "/admin/listings/add",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Категории",
+          url: "/admin/listings/categories",
+        },
+        {
+          title: "Регионы",
+          url: "/admin/listings/regions",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Пользователи",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Все пользователи",
+          url: "/admin/users",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "Добавить пользователя",
+          url: "/admin/users/add",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Медиа",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "Список медиа",
+          url: "/admin/media",
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: "Загрузить медиа",
+          url: "/admin/media/add",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          title: "Категории медиа",
+          url: "/admin/media/categories",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "Настройки",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "General",
+          title: "Настройки сайта",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Настройки пользователя",
           url: "#",
         },
         {
-          title: "Billing",
+          title: "Настройки платежей",
           url: "#",
         },
         {
-          title: "Limits",
+          title: "Настройки объявления",
           url: "#",
         },
       ],
@@ -120,17 +116,17 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Задачи",
       url: "#",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
+      name: "электронные письма",
       url: "#",
       icon: PieChart,
     },
     {
-      name: "Travel",
+      name: "Тикеты поддержки",
       url: "#",
       icon: Map,
     },
