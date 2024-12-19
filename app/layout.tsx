@@ -36,7 +36,7 @@ export default function RootLayout({
         >
           <SessionProvider
             session={null}
-            refetchInterval={300}
+            refetchInterval={600}
             refetchOnWindowFocus={false}
           >
             {children}
