@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
-import { signIn, providerMap } from "@/auth";
+import { providerMap, signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "./ui/button";
 
 export function LoginForm({
   className,
@@ -19,8 +19,10 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Добро пожаловать!</CardTitle>
-          <CardDescription>Войти через Яндекс или GitHub</CardDescription>
+          <CardTitle className="text-xl">Welcome back</CardTitle>
+          <CardDescription>
+            Login with your Apple or Google account
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-6">
@@ -52,9 +54,8 @@ export function LoginForm({
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
-        Нажав продолжить, вы соглашаетесь с нашими условиями.{" "}
-        <a href="#">условиями сайта</a> и{" "}
-        <a href="#">политикой конфиденциальности</a>.
+        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
+        and <a href="#">Privacy Policy</a>.
       </div>
     </div>
   );

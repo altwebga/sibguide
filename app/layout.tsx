@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/shared/theme-provider";
-import { SessionProvider } from "next-auth/react";
+import { AppProvider } from "@/provider/app-provider";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 
-const TildaSans = localFont({
+const tildaSans = localFont({
   src: "../public/fonts/TildaSans-VF.woff",
   variable: "--font-tilda-sans",
   weight: "100 900",
@@ -22,27 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ru"
-      suppressHydrationWarning
-      className={`${TildaSans.variable}`}
-    >
-      <body className="antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <SessionProvider
-            session={null}
-            refetchInterval={600}
-            refetchOnWindowFocus={false}
-          >
-            {children}
-            <Toaster />
-          </SessionProvider>
-        </ThemeProvider>
+    <html lang="ru">
+      <body className={`${tildaSans.variable} antialiased`}>
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );
