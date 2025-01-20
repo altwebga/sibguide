@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
       <body className={`${tildaSans.variable} antialiased`}>
         <AppProvider>{children}</AppProvider>
       </body>

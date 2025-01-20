@@ -6,6 +6,8 @@ import Link from "next/link";
 enum Error {
   Configuration = "Configuration",
   Verification = "Verification",
+  AccessDenied = "AccessDenied",
+  Default = "Default",
 }
 
 const errorMap = {
@@ -20,6 +22,20 @@ const errorMap = {
     <p>
       Проблема с проверкой аутентификации. Пожалуйста, повторите попытку. Код
       ошибки: <code className="rounded-sm p-2 text-xs">Verification</code>
+    </p>
+  ),
+  [Error.AccessDenied]: (
+    <p>
+      Пользователь не имеет доступа к данному ресурсу. Пожалуйста, свяжитесь с
+      нами, если это ошибка сохраняется. Код ошибки:
+      <code className="rounded-sm p-2 text-xs">AccessDenied</code>
+    </p>
+  ),
+  [Error.Default]: (
+    <p>
+      При попытке пройти аутентификацию возникла проблема. Пожалуйста, свяжитесь
+      с нами, если это ошибка сохраняется. Код ошибки:
+      <code className="rounded-sm p-2 text-xs">Default</code>
     </p>
   ),
 };
