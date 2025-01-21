@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AppProvider } from "@/provider/app-provider";
+import { Toaster } from "@/components/ui/toaster";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -22,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${tildaSans.variable} antialiased`}>
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>
+          {children}
+          <Toaster />
+        </AppProvider>
       </body>
     </html>
   );
