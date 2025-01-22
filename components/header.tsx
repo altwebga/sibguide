@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { UserNav } from "./user-nav";
 import { useSession } from "next-auth/react";
+import { SiteNav } from "./site-nav";
+import { Input } from "./ui/input";
 
 export function Header() {
   const { data: session } = useSession();
@@ -10,8 +12,9 @@ export function Header() {
     <header className="bg-background/50 backdrop-blur-md sticky top-0 z-40 w-full border-b">
       <div className="flex items-center justify-between h-16 md:h-20 px-4 container mx-auto">
         <div>logo</div>
-        <div className="flex items-center gap-4">
-          <div>nav</div>
+        <Input placeholder="Search" className="w-full max-w-2xl" />
+        <div className="flex items-center gap-8">
+          <SiteNav />
           {!session ? (
             <Button asChild>
               <Link href="/login">Войти</Link>
