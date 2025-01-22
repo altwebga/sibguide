@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const userMenu = [
+export const userMenu = [
   {
     label: "Статистика",
     href: "/dashboard",
