@@ -37,10 +37,13 @@ export function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserAvatar
-          src={session?.user?.image || "/images/profile.min.svg"}
-          alt={session?.user?.name || "avatar"}
-        />
+        <div className="flex items-center gap-2">
+          <UserAvatar
+            src={session?.user?.image || "/images/profile.min.svg"}
+            alt={session?.user?.name || "avatar"}
+          />
+          <span>{session?.user?.name || "no name"}</span>
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>{session?.user?.email || ""}</DropdownMenuLabel>

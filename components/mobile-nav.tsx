@@ -82,7 +82,7 @@ export const siteNavItems = {
   ],
 };
 
-export function SiteNav() {
+export function MobileNav() {
   const pathname = usePathname();
   return (
     <Sheet>
